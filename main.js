@@ -1,3 +1,7 @@
+leftWristX = 0;
+rightWristX = 0;
+difference = 0;
+
 function preload(){
 
 }
@@ -16,6 +20,9 @@ function setup(){
 function gotPoses(results){
     if(results.length > 0){
         console.log(results);
+        leftWristX = results[0].pose.leftWrist.x;
+        rightWristX = results[0].pose.rightWrist.x;
+        difference = floor(leftWristX - rightWristX);
     }
 }
 
@@ -24,5 +31,10 @@ function modelLoaded(){
 }
 
 function draw(){
-    background("#d8f3dc")
+    background("#d8f3dc");
+    document.getElementById("font_size").innerHTML = "Font Size will be =  " + difference + " px";
+    textSize(difference);
+    fill("#ef233c");
+
+    text("Surya", 325, 320);
 }
